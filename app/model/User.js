@@ -52,30 +52,8 @@ module.exports = (app) => {
         require: true,
       },
     ],
-    grouplist: [
-      {
-        group: {
-          type: mongoose.SchemaTypes.ObjectId,
-          ref: "Group",
-          require: true,
-        },
-        type: {
-          type: Number,
-          default: 0,
-        },
-      },
-    ],
-    groups: [
-      {
-        state: {type: Number, require: true},
-        message: {type: String},
-        group: {
-          type: mongoose.SchemaTypes.ObjectId,
-          ref: "Group",
-          require: true,
-        },
-      },
-    ],
+
+    //存群的请求
   });
   return mongoose.model("User", UserSchema, "user");
 };

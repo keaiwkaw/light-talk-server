@@ -18,9 +18,14 @@ module.exports = (app) => {
   router.post("/searchPeopleToType", controller.friend.searchPeopleToType);
 
   //群聊接口
-  router.post('/createGroup',controller.group.createGroup)
-  router.get('/getGroups',controller.group.getGroups)
-  router.get('/searchGroupToType',controller.group.searchGroupToType)
+  router.post("/createGroup", controller.group.createGroup);
+  router.get("/getGroups", controller.group.getGroups);
+  router.get("/searchGroupToType", controller.group.searchGroupToType);
+  router.post("/sendRequestAddGroup", controller.group.sendRequestAddGroup);
+  router.post("/dealRequestAddGroup", controller.group.dealRequestAddGroup);
+  router.get("/getRequestListGroup", controller.group.getRequestListGroup);
+
+  //io 接口
   io.of("/").route("chat", io.controller.chat.acceptMessage);
   io.of("/").route("addPeople", io.controller.chat.addPeople);
   io.of("/").route("deletePeople", io.controller.chat.deletePeople);

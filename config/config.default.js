@@ -28,16 +28,16 @@ module.exports = (appInfo) => {
     },
   };
   config.multipart = {
-    mode: 'file',
-    fileSize: '30mb',
-    whitelist:['.jpg','.png','.webp','.gif']
-}
+    mode: "file",
+    fileSize: "30mb",
+    whitelist: [".jpg", ".png", ".webp", ".gif"],
+  };
   //mongoose
 
   config.mongoose = {
     client: {
       url: "mongodb://127.0.0.1:27017/ktalk",
-      options: {useUnifiedTopology: true},
+      options: {useUnifiedTopology: true, },
       plugins: [],
     },
   };

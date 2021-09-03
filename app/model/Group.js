@@ -19,9 +19,31 @@ module.exports = (app) => {
     },
     groupMembers: [
       {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "User",
-        require: true,
+        user: {
+          type: mongoose.SchemaTypes.ObjectId,
+          ref: "User",
+          require: true,
+        },
+        type: {
+          type: Number,
+          default: 0,
+        },
+      },
+    ],
+    requestList: [
+      {
+        user: {
+          type: mongoose.SchemaTypes.ObjectId,
+          ref: "User",
+          require: true,
+        },
+        state: {
+          type: Number,
+          default: 0,
+        },
+        messsage: {
+          type: String,
+        },
       },
     ],
   });
