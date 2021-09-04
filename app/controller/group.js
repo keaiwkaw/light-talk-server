@@ -32,7 +32,9 @@ class GroupController extends Controller {
     const User = ctx.model.User;
     const Group = ctx.model.Group;
     const {selfID} = ctx.query;
-    const list = await Group.find({"groupMembers.user": selfID});
+    const list = await Group.find({"groupMembers.user": selfID}).populate(
+      "groupMembers.user"
+    );
     ctx.body = {
       groups: list,
       code: 200,
@@ -95,7 +97,7 @@ class GroupController extends Controller {
     const {groupID, code, userID} = ctx.request.body;
     const User = ctx.model.User;
     const Group = ctx.model.Group;
- 
+
     if (code == 1) {
       await Group.updateOne(
         {_id: groupID, "requestList.user": userID},

@@ -3,9 +3,6 @@ const online = {};
 const Controller = require("egg").Controller;
 
 class ChatController extends Controller {
-  async acceptMessage() {
-    const {ctx, app} = this;
-  }
   async addPeople() {
     const {ctx, app} = this;
     const namespace = app.io.of("/");
@@ -24,7 +21,7 @@ class ChatController extends Controller {
     const {ctx, app} = this;
     const namespace = app.io.of("/");
     const {user, message, socketID} = ctx.args[0];
-    console.log("socketID", socketID);
+    // console.log("socketID", socketID);
     // console.log(namespace.sockets);
     if (socketID !== "") {
       namespace.sockets[socketID].emit("receive", {
