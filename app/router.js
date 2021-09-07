@@ -35,8 +35,6 @@ module.exports = (app) => {
 
   //视频接口
   io.of("/").route("joinRoom", io.controller.video.joinRoom);
-  io.of("/").route("receiverJoinRoom", io.controller.video.receiverJoinRoom);
-  io.of("/").route("toSendVideo", io.controller.video.toSendVideo);
   io.of("/").route("cancelSendVideo", io.controller.video.cancelSendVideo);
   io.of("/").route("receiveVideo", io.controller.video.receiveVideo);
   io.of("/").route(

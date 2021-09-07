@@ -37,13 +37,13 @@ module.exports = (appInfo) => {
   config.mongoose = {
     client: {
       url: "mongodb://127.0.0.1:27017/ktalk",
-      options: {useUnifiedTopology: true, },
+      options: {useUnifiedTopology: true},
       plugins: [],
     },
   };
 
   config.cors = {
-    origin: "http://localhost:8080",
+    origin: ctx => ctx.get('origin'), //允许所有域名
     credentials: true, //允许Cook可以跨域
     allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS",
   };
