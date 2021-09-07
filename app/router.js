@@ -32,4 +32,20 @@ module.exports = (app) => {
   //群聊接口
   io.of("/").route("sendMessageByGroup", io.controller.group.sendMessage);
   io.of("/").route("addGroup", io.controller.group.addGroup);
+
+  //视频接口
+  io.of("/").route("joinRoom", io.controller.video.joinRoom);
+  io.of("/").route("receiverJoinRoom", io.controller.video.receiverJoinRoom);
+  io.of("/").route("toSendVideo", io.controller.video.toSendVideo);
+  io.of("/").route("cancelSendVideo", io.controller.video.cancelSendVideo);
+  io.of("/").route("receiveVideo", io.controller.video.receiveVideo);
+  io.of("/").route(
+    "rejectReceiveVideo",
+    io.controller.video.rejectReceiveVideo
+  );
+  io.of("/").route("answerVideo", io.controller.video.answerVideo);
+  io.of("/").route("hangupVideo", io.controller.video.hangupVideo);
+  io.of("/").route("addIceCandidate", io.controller.video.addIceCandidate);
+  io.of("/").route("receiveOffer", io.controller.video.receiveOffer);
+  io.of("/").route("receiveAnsewer", io.controller.video.receiveAnsewer);
 };
