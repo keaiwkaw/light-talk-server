@@ -45,5 +45,25 @@ module.exports = (app) => {
   io.of("/").route("hangupVideo", io.controller.video.hangupVideo);
   io.of("/").route("addIceCandidate", io.controller.video.addIceCandidate);
   io.of("/").route("receiveOffer", io.controller.video.receiveOffer);
-  io.of("/").route("receiveAnsewer", io.controller.video.receiveAnsewer);
+  io.of("/").route("receiveAnswer", io.controller.video.receiveAnswer);
+
+  //群聊音视频
+  io.of("/").route(
+    "answerVideoGroup",
+    io.controller.videogroup.answerVideoGroup
+  );
+
+  io.of("/").route(
+    "addIceCandidateGroup",
+    io.controller.videogroup.addIceCandidateGroup
+  );
+  io.of("/").route(
+    "receiveOfferGroup",
+    io.controller.videogroup.receiveOfferGroup
+  );
+  io.of("/").route(
+    "receiveAnswerGroup",
+    io.controller.videogroup.receiveAnswerGroup
+  );
+  io.of("/").route("updatePeerList", io.controller.videogroup.updatePeerList);
 };

@@ -20,14 +20,13 @@ class GroupController extends Controller {
         ctx.socket.join(rooms[j]);
       }
     }
+    app.groupRoom = rooms;
   }
   async sendMessage() {
     const {ctx, app} = this;
     const namespace = app.io.of("/");
     const {user, message, group} = ctx.args[0];
     let idx = rooms.indexOf(group._id);
-    console.log("我收到的消息是:", message);
-    console.log("当前的命名空间有", rooms);
     ctx.socket.leave(rooms[idx]);
     namespace.to(rooms[idx]).emit("receive", {
       user,

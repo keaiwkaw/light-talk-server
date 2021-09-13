@@ -72,7 +72,7 @@ class VideoController extends Controller {
     );
     ns.to(toUser.socketId).emit("receiveOffer", data.offer);
   }
-  async receiveAnsewer() {
+  async receiveAnswer() {
     const {ctx, app} = this;
     const data = ctx.args[0];
     const toUser = rooms[data.user.roomId].find(

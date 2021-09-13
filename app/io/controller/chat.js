@@ -9,7 +9,7 @@ class ChatController extends Controller {
     const {userID, socketID} = ctx.args[0];
     online[userID] = socketID;
     namespace.emit("setOnline", online);
-    console.log("当前连接的用户：", online);
+    console.log("当前连接的用户的数量：", Object.keys(online).length);
   }
   async deletePeople() {
     const {ctx, app} = this;
