@@ -47,6 +47,13 @@ class VideoController extends Controller {
     console.log("接收了视频邀请，我要开始通知他们建立视频流了", user.roomId);
     ns.to(user.roomId).emit("answerVideo", user);
   }
+  async answerFile() {
+    const {ctx, app} = this;
+    const user = ctx.args[0];
+    let ns = app.io.of("/");
+    // console.log("接收了视频邀请，我要开始通知他们建立视频流了", user.roomId);
+    ns.to(user.roomId).emit("initP2P", user);
+  }
   async hangupVideo() {
     const {ctx, app} = this;
     const user = ctx.args[0];

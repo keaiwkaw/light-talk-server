@@ -4,7 +4,7 @@ let OSS = require("ali-oss");
 let info = {
   region: "oss-cn-beijing",
   accessKeyId: "LTAI5tQB9NCFBRpzuGkawA9w",
-  accessKeySecret: "zAFwrpTDltvmImDdiZ80hvxoatD1C3",
+  accessKeySecret: "",
   bucket: "light-talk",
 };
 let client = new OSS(info);

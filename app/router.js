@@ -42,6 +42,7 @@ module.exports = (app) => {
     io.controller.video.rejectReceiveVideo
   );
   io.of("/").route("answerVideo", io.controller.video.answerVideo);
+  io.of("/").route("answerFile", io.controller.video.answerFile);
   io.of("/").route("hangupVideo", io.controller.video.hangupVideo);
   io.of("/").route("addIceCandidate", io.controller.video.addIceCandidate);
   io.of("/").route("receiveOffer", io.controller.video.receiveOffer);
@@ -65,5 +66,4 @@ module.exports = (app) => {
     "receiveAnswerGroup",
     io.controller.videogroup.receiveAnswerGroup
   );
-  io.of("/").route("updatePeerList", io.controller.videogroup.updatePeerList);
 };

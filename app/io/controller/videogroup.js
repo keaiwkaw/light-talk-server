@@ -1,5 +1,5 @@
 "use strict";
-let peerList = [];
+let localStreamIdList = [];
 const Controller = require("egg").Controller;
 
 class VideogroupController extends Controller {
@@ -11,8 +11,9 @@ class VideogroupController extends Controller {
     const namespace = app.io.of("/");
     let idx = groupRoom.indexOf(group._id);
     ctx.socket.leave(groupRoom[idx]);
-    namespace.to(groupRoom[idx]).emit("receiveOfferGroup", offer);
+    namespace.to(groupRoom[idx]).emit("receiveOfferGroup", {user, offer});
     ctx.socket.join(groupRoom[idx]);
+    console.log("receive offer");
   }
   //将answer 转发给除了自己之外的所有用户
   async receiveAnswerGroup() {
@@ -22,8 +23,9 @@ class VideogroupController extends Controller {
     const namespace = app.io.of("/");
     let idx = groupRoom.indexOf(group._id);
     ctx.socket.leave(groupRoom[idx]);
-    namespace.to(groupRoom[idx]).emit("receiveOfferGroup", answer);
+    namespace.to(groupRoom[idx]).emit("receiveOfferGroup", {user, answer});
     ctx.socket.join(groupRoom[idx]);
+    console.log("receive answer");
   }
   //将ice代理转发给除了自己之外的所有用户
   async addIceCandidateGroup() {
@@ -33,34 +35,20 @@ class VideogroupController extends Controller {
     const namespace = app.io.of("/");
     let idx = groupRoom.indexOf(group._id);
     ctx.socket.leave(groupRoom[idx]);
-    namespace.to(groupRoom[idx]).emit("addIceCandidateGroup", candidate);
+    namespace
+      .to(groupRoom[idx])
+      .emit("addIceCandidateGroup", {user, candidate});
     ctx.socket.join(groupRoom[idx]);
+    console.log("receive ice");
   }
   async answerVideoGroup() {
     const {ctx, app} = this;
     const {group, user} = ctx.args[0];
     const {groupRoom} = app;
-    // console.log("在线用户所有群的id", groupRoom);
     const namespace = app.io.of("/");
     let idx = groupRoom.indexOf(group._id);
-    ctx.socket.leave(groupRoom[idx]);
-    console.log("我要通知群的是：", groupRoom[idx]);
-    namespace.to(groupRoom[idx]).emit("answerVideoGroup", ctx.args[0]);
-    ctx.socket.join(groupRoom[idx]);
-  }
-  async updatePeerList() {
-    const {ctx, app} = this;
-    const {group, peer, user} = ctx.args[0];
-    const {groupRoom} = app;
-    // console.log("在线用户所有群的id", groupRoom);
-    const namespace = app.io.of("/");
-    let idx = groupRoom.indexOf(group._id);
-
-    peerList.push({
-      user,
-      peer,
-    });
-    namespace.to(groupRoom[idx]).emit("answerVideoGroup", peerList);
+    console.log("通知他们显示加入群聊");
+    namespace.to(groupRoom[idx]).emit("answerVideoGroup");
   }
 }
 
